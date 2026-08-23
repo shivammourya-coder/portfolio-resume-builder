@@ -1,0 +1,6 @@
+{
+  "name": "Portfolio & Resume Builder",
+  "description": "Professional resume and portfolio builder featuring three distinctive templates, AI text enhancement, real-time live preview, photo upload, and pixel-perfect PDF export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
