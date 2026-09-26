@@ -1,6 +1,7 @@
 import React from "react";
 import { PortfolioData } from "../../types";
 import { Mail, Phone, MapPin, Globe, Linkedin, Github, ExternalLink, Terminal, Cpu, BookOpen, Sparkles } from "lucide-react";
+import { formatUrl, formatDisplayUrl } from "../../utils/urlUtils";
 
 interface TemplateProps {
   data: PortfolioData;
@@ -34,16 +35,16 @@ export const TechMinimalTemplate: React.FC<TemplateProps> = ({ data }) => {
           {/* Quick contact / links ribbon */}
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 mt-4 text-xs font-mono text-slate-600">
             {personalInfo.email && (
-              <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-1 hover:text-slate-950">
+              <a href={formatUrl(personalInfo.email)} className="flex items-center gap-1 hover:text-slate-950">
                 <Mail className="w-3.5 h-3.5 text-slate-400" />
                 <span>{personalInfo.email}</span>
               </a>
             )}
             {personalInfo.phone && (
-              <span className="flex items-center gap-1">
+              <a href={formatUrl(personalInfo.phone)} className="flex items-center gap-1 hover:text-slate-950">
                 <Phone className="w-3.5 h-3.5 text-slate-400" />
                 <span>{personalInfo.phone}</span>
-              </span>
+              </a>
             )}
             {personalInfo.location && (
               <span className="flex items-center gap-1">
@@ -53,36 +54,36 @@ export const TechMinimalTemplate: React.FC<TemplateProps> = ({ data }) => {
             )}
             {personalInfo.github && (
               <a
-                href={personalInfo.github.startsWith("http") ? personalInfo.github : `https://${personalInfo.github}`}
+                href={formatUrl(personalInfo.github)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 hover:text-slate-950 font-bold"
                 style={{ color: accentColor }}
               >
                 <Github className="w-3.5 h-3.5" />
-                <span>{personalInfo.github.replace(/^https?:\/\/(www\.)?/, "")}</span>
+                <span>{formatDisplayUrl(personalInfo.github)}</span>
               </a>
             )}
             {personalInfo.website && (
               <a
-                href={personalInfo.website.startsWith("http") ? personalInfo.website : `https://${personalInfo.website}`}
+                href={formatUrl(personalInfo.website)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 hover:text-slate-950"
               >
                 <Globe className="w-3.5 h-3.5 text-slate-400" />
-                <span>{personalInfo.website.replace(/^https?:\/\//, "")}</span>
+                <span>{formatDisplayUrl(personalInfo.website)}</span>
               </a>
             )}
             {personalInfo.linkedin && (
               <a
-                href={personalInfo.linkedin.startsWith("http") ? personalInfo.linkedin : `https://${personalInfo.linkedin}`}
+                href={formatUrl(personalInfo.linkedin)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 hover:text-slate-950"
               >
                 <Linkedin className="w-3.5 h-3.5 text-slate-400" />
-                <span>{personalInfo.linkedin.replace(/^https?:\/\/(www\.)?/, "")}</span>
+                <span>{formatDisplayUrl(personalInfo.linkedin)}</span>
               </a>
             )}
           </div>
@@ -207,10 +208,10 @@ export const TechMinimalTemplate: React.FC<TemplateProps> = ({ data }) => {
                     <div className="flex items-center gap-2 text-slate-500 shrink-0">
                       {proj.github && (
                         <a
-                          href={proj.github}
+                          href={formatUrl(proj.github)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-slate-900"
+                          className="hover:text-slate-900 cursor-pointer"
                           title="Source Code"
                         >
                           <Github className="w-3.5 h-3.5" />
@@ -218,10 +219,10 @@ export const TechMinimalTemplate: React.FC<TemplateProps> = ({ data }) => {
                       )}
                       {proj.link && (
                         <a
-                          href={proj.link}
+                          href={formatUrl(proj.link)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-blue-600"
+                          className="hover:text-blue-600 cursor-pointer"
                           title="Live Preview"
                           style={{ color: accentColor }}
                         >
