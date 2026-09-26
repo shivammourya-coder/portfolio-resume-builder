@@ -1,6 +1,7 @@
-import React from "react";
+ import React from "react";
 import { PortfolioData } from "../../types";
 import { Mail, Phone, MapPin, Globe, Linkedin, Github, Calendar, Briefcase, GraduationCap, Code2, Award, FolderGit2 } from "lucide-react";
+import { formatUrl, formatDisplayUrl } from "../../utils/urlUtils";
 
 interface TemplateProps {
   data: PortfolioData;
@@ -47,16 +48,22 @@ export const ModernExecutiveTemplate: React.FC<TemplateProps> = ({ data }) => {
             {/* Contact details */}
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-y-2 gap-x-4 text-xs text-slate-200">
               {personalInfo.email && (
-                <div className="flex items-center gap-1.5 hover:text-white transition-colors">
+                <a
+                  href={formatUrl(personalInfo.email)}
+                  className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+                >
                   <Mail className="w-3.5 h-3.5 shrink-0 opacity-80" />
                   <span>{personalInfo.email}</span>
-                </div>
+                </a>
               )}
               {personalInfo.phone && (
-                <div className="flex items-center gap-1.5">
+                <a
+                  href={formatUrl(personalInfo.phone)}
+                  className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+                >
                   <Phone className="w-3.5 h-3.5 shrink-0 opacity-80" />
                   <span>{personalInfo.phone}</span>
-                </div>
+                </a>
               )}
               {personalInfo.location && (
                 <div className="flex items-center gap-1.5">
@@ -65,22 +72,37 @@ export const ModernExecutiveTemplate: React.FC<TemplateProps> = ({ data }) => {
                 </div>
               )}
               {personalInfo.website && (
-                <div className="flex items-center gap-1.5">
+                <a
+                  href={formatUrl(personalInfo.website)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+                >
                   <Globe className="w-3.5 h-3.5 shrink-0 opacity-80" />
-                  <span>{personalInfo.website.replace(/^https?:\/\//, "")}</span>
-                </div>
+                  <span>{formatDisplayUrl(personalInfo.website)}</span>
+                </a>
               )}
               {personalInfo.linkedin && (
-                <div className="flex items-center gap-1.5">
+                <a
+                  href={formatUrl(personalInfo.linkedin)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+                >
                   <Linkedin className="w-3.5 h-3.5 shrink-0 opacity-80" />
-                  <span>{personalInfo.linkedin.replace(/^https?:\/\/(www\.)?/, "")}</span>
-                </div>
+                  <span>{formatDisplayUrl(personalInfo.linkedin)}</span>
+                </a>
               )}
               {personalInfo.github && (
-                <div className="flex items-center gap-1.5">
+                <a
+                  href={formatUrl(personalInfo.github)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+                >
                   <Github className="w-3.5 h-3.5 shrink-0 opacity-80" />
-                  <span>{personalInfo.github.replace(/^https?:\/\/(www\.)?/, "")}</span>
-                </div>
+                  <span>{formatDisplayUrl(personalInfo.github)}</span>
+                </a>
               )}
             </div>
           </div>
@@ -177,10 +199,10 @@ export const ModernExecutiveTemplate: React.FC<TemplateProps> = ({ data }) => {
                       <div className="flex gap-3 text-[11px]">
                         {proj.link && (
                           <a
-                            href={proj.link}
+                            href={formatUrl(proj.link)}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-medium hover:underline flex items-center gap-1"
+                            className="font-medium hover:underline flex items-center gap-1 cursor-pointer"
                             style={{ color: accentColor }}
                           >
                             <Globe className="w-3 h-3" /> Live Demo
@@ -188,10 +210,10 @@ export const ModernExecutiveTemplate: React.FC<TemplateProps> = ({ data }) => {
                         )}
                         {proj.github && (
                           <a
-                            href={proj.github}
+                            href={formatUrl(proj.github)}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-medium text-slate-600 hover:text-slate-900 flex items-center gap-1"
+                            className="font-medium text-slate-600 hover:text-slate-900 flex items-center gap-1 cursor-pointer"
                           >
                             <Github className="w-3 h-3" /> Code Repository
                           </a>
